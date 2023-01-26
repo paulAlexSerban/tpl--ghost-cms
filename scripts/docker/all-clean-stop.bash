@@ -9,3 +9,4 @@ docker compose --env-file ../../config.env \
 docker container prune -f
 docker volume prune -f
 docker image prune -af
+rm -rfv ../../backend/ghost_cms/dist/*
