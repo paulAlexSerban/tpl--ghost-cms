@@ -41,7 +41,7 @@
         "url": "https://github.com/TryGhost/Starter.git"
     },
     "bugs": "https://github.com/TryGhost/Starter/issues",
-    "contributors": "https://github.com/TryGhost/Starter/graphs/contributors",
+    "contributors":[ "https://github.com/TryGhost/Starter/graphs/contributors" ],
     "devDependencies": {
         "autoprefixer": "10.4.13",
         "beeper": "2.1.0",
