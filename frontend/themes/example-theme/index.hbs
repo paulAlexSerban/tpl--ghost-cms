@@ -1,0 +1,16 @@
+{{!< default}}
+
+<main>
+    <!-- for each one of the posts, display the title -->
+    {{#foreach posts}}
+        <h3>
+            <a href="{{url}}">{{title}}</a>
+        </h3>
+
+        {{> post_card}}
+
+    {{/foreach}}
+</main>
+
+<!-- pagination block -->
+{{pagination}}

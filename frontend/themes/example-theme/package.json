@@ -1,0 +1,29 @@
+{
+    "name": "example-theme",
+    "version": "1.0.0",
+    "description": "An example theme for tpl--ghost-cms",
+    "keywords": [
+        "ghost",
+        "theme",
+        "ghost-theme"
+    ],
+    "engines": {
+        "ghost": ">=5.0.0"
+    },
+    "scripts": {
+        "test": "echo \"Error: no test specified\""
+    },
+    "author": {
+        "name": "Paul Serban",
+        "email": "paul.alex.serban@gmail.com"
+    },
+    "license": "ISC",
+    "config": {
+        "posts_per_page": 3
+    },
+    "card": {
+        "cards": [
+            "my-custom-card"
+        ]
+    }
+}
