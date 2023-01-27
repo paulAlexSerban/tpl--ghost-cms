@@ -1,0 +1,59 @@
+---
+version: "3.7"
+services:
+    # ---------------------------------------------------------------------
+    # | Ghost CMS                                                         |
+    # ---------------------------------------------------------------------
+
+    ghost:
+        image: ghost:latest
+        restart: always
+        ports:
+            - 3000:2368
+        depends_on:
+            - db
+        environment:
+            # see https://ghost.org/docs/config/#configuration-options
+            database__client: mysql
+            database__connection__host: db
+            database__connection__user: root
+            database__connection__password: example
+            database__connection__database: ghost
+            # this url value is just an example, and is likely wrong for your environment!
+            url: http://localhost:3000
+            # contrary to the default mentioned in the linked documentation, this image defaults to NODE_ENV=production (so development mode needs to be explicitly specified if desired)
+            NODE_ENV: development
+        volumes:
+            - ../backend/ghost_cms/dist/content:/var/lib/ghost/content
+            - ../frontend/themes/example-theme:/var/lib/ghost/content/themes/example-theme
+            - /var/lib/ghost/content/themes/example-theme/node_modules/
+            - ../frontend/themes/official-starter-theme:/var/lib/ghost/content/themes/official-starter-theme
+            - /var/lib/ghost/content/themes/official-starter-theme/node_modules/
+
+    # ---------------------------------------------------------------------
+    # | Database                                                          |
+    # ---------------------------------------------------------------------
+
+    db:
+        image: mysql:8.0
+        restart: always
+        environment:
+            MYSQL_ROOT_PASSWORD: example
+        volumes:
+            - ../backend/database/mysql/dist:/var/lib/mysql
+
+    # ---------------------------------------------------------------------
+    # | PhpMyAdmin                                                        |
+    # ---------------------------------------------------------------------
+
+    phpmyadmin:
+        depends_on:
+            - db
+        image: phpmyadmin/phpmyadmin:latest
+        container_name: phpmyadmin
+        restart: always
+        ports:
+            - 8080:80
+        environment:
+            PMA_HOST: db
+            MYSQL_ROOT_PASSWORD: example

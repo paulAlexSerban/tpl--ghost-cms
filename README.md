@@ -1,1 +1,1 @@
-# tpl--ghost-cms
+# TEMPLATE Ghost CMS
