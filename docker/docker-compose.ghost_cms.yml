@@ -25,6 +25,10 @@ services:
             NODE_ENV: development
         volumes:
             - ../backend/ghost_cms/dist/content:/var/lib/ghost/content
+            - ../frontend/themes/example-theme:/var/lib/ghost/content/themes/example-theme
+            - /var/lib/ghost/content/themes/example-theme/node_modules/
+            - ../frontend/themes/official-starter-theme:/var/lib/ghost/content/themes/official-starter-theme
+            - /var/lib/ghost/content/themes/official-starter-theme/node_modules/
 
     # ---------------------------------------------------------------------
     # | Database                                                          |
@@ -34,4 +38,20 @@ services:
         image: mysql:8.0
         restart: always
         environment:
+            MYSQL_ROOT_PASSWORD: example
+
+    # ---------------------------------------------------------------------
+    # | PhpMyAdmin                                                        |
+    # ---------------------------------------------------------------------
+
+    phpmyadmin:
+        depends_on:
+            - db
+        image: phpmyadmin/phpmyadmin:latest
+        container_name: phpmyadmin
+        restart: always
+        ports:
+            - 8080:80
+        environment:
+            PMA_HOST: db
             MYSQL_ROOT_PASSWORD: example
