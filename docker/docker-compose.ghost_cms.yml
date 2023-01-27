@@ -39,6 +39,8 @@ services:
         restart: always
         environment:
             MYSQL_ROOT_PASSWORD: example
+        volumes:
+            - ../backend/database/mysql/dist:/var/lib/mysql
 
     # ---------------------------------------------------------------------
     # | PhpMyAdmin                                                        |
